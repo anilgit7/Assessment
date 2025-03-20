@@ -10,6 +10,8 @@ import mountain from "../assets/images/mountain.webp";
 import { handleResponse, toastError, toastSuccess } from "../utils/toastr";
 import CommentModal from "../components/CommentModal";
 import { logoutUser, checkAuth } from "../api/auth";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 function Dashboard() {
   const [comment, setComment] = useState([]);
   const [editTitle, setEditTitle] = useState("");
@@ -32,10 +34,10 @@ function Dashboard() {
       setUserId(null);
     }
   };
-  console.log("check iddd", userId);
+  
   const getData = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/comments");
+      const res = await axios.get(`${BASE_URL}/comments`);
       setComment(res.data);
     } catch (error) {
       console.error("Error fetching comments:", error);
@@ -48,7 +50,7 @@ function Dashboard() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8000/api/comments/${id}`);
+      await axios.delete(`${BASE_URL}/comments/${id}`);
       setComment((prevComments) =>
         prevComments.filter((comment) => comment.id !== id)
       );
@@ -62,7 +64,7 @@ function Dashboard() {
     setEditId(id);
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/comments/${id}/edit`
+        `${BASE_URL}/comments/${id}/edit`
       );
       console.log("Comment data:", response.data.title);
       setEditTitle(response.data.title);
@@ -87,8 +89,6 @@ function Dashboard() {
             alt="hero of login page"
             className="w-full h-[100px]"
           />
-          Please follow the instructions carefully and complete the tasks to the
-          best of your ability.
           <hr className=" my-5 border-gray-300" />
           <div className="flex justify-between">
             <div className="flex">

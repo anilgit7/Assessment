@@ -9,14 +9,13 @@ function Navbar() {
     const [email, setEmail] = useState(null);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation(); // Track route changes
-
+    const location = useLocation(); 
     useEffect(() => {
         const verifyAuth = async () => {
             try {
                 const data = await checkAuth();
                 setIsAuthenticated(data.authenticated);
-                setName(data.name || 'User'); //Fallback for cases when name is empty
+                setName(data.name || 'User'); 
                 setEmail(data.email);
             } catch (err) {
                 setIsAuthenticated(false);

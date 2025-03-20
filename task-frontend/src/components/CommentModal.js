@@ -1,10 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { handleResponse, toastError, toastSuccess } from "../utils/toastr";
-import {
-  faHomeLgAlt,
-  faPeopleCarryBox,
-} from "@fortawesome/free-solid-svg-icons";
+import { toastError, toastSuccess } from "../utils/toastr";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const CommentModal = ({ 
   isOpen,
@@ -56,7 +53,7 @@ const CommentModal = ({
     if (isEdit === true) {
       try {
         const response = await axios.put(
-          `http://localhost:8000/api/comments/edit/${editId}`,
+          `${BASE_URL}/comments/edit/${editId}`,
           { title, content }
         );
 
@@ -75,14 +72,13 @@ const CommentModal = ({
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/comments",
+          `${BASE_URL}/comments`,
           { title, content, userId }
         );
         if (response.status === 201) {
              getData();
              setTitle("");
              setContent("");
-          // Update the parent component's state
           setIsOpen(false);
           toastSuccess("Comment Added Successfully!!!");
         }

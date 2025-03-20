@@ -5,7 +5,7 @@ return [
 
     'allowed_methods' => ['*'], // Allow all methods (GET, POST, etc.)
 
-    'allowed_origins' => ['http://localhost:3003'], // React frontend origin
+    'allowed_origins' => ['*'], // React frontend origin
 
     'allowed_origins_patterns' => [],
 
