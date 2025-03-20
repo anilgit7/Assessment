@@ -51,7 +51,6 @@
 
 The project runs on `http://localhost:3000` in your browser.
 
-## Additional Information
 
 # Login Credentials
 1. Email -> admin@gmail.com
@@ -60,6 +59,8 @@ The project runs on `http://localhost:3000` in your browser.
 2. Email -> user@gmail.com
    Password -> admin@admin
 
-3. A logged-in user can only edit or delete comments they have posted.
+## Additional Information
+1. A logged-in user can only edit or delete comments they have posted.
 To test this functionality, log in with different user credentials and attempt to edit or delete comments.
 
+2. New user can register/signup and add a comment.
