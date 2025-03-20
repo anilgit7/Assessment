@@ -48,7 +48,6 @@
    ```
    npm start
    ```
-   ```
 
 The project runs on `http://localhost:3000` in your browser.
 
