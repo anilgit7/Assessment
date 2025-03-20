@@ -14,6 +14,7 @@ class AuthController extends Controller
     {
         $name = '';
         $email = '';
+        $id = '';
         $authenticated = Auth::check();
         if($authenticated){
             $name = Auth::user()->name;
@@ -57,7 +58,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request)
-    {dd('test');
+    {
         try {
             $request->validate([
                 'name' => 'required|string|max:255',
@@ -69,6 +70,10 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
             ]);
+            if($user){
+                Auth::login($user);
+                $request->session()->regenerate();
+            }
 
             return response()->json([
                 'success' => true,
